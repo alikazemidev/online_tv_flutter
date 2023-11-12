@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:tv_online/backend/response/channel_response.dart';
 
 class ChannelRepository {
-  Future<List<dynamic>> getChannels() async {
+  Future<ChannelResponse> getChannels() async {
     var res = await Dio().get('https://hitaldev.ir/channels');
-    return res.data['data'];
+    print(res.data['data']);
+    return ChannelResponse.fromJson(res.data);
   }
 }
