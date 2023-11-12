@@ -86,7 +86,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
-                                      onTap: () => Get.to(()=>TvScreen(channelIndex: index,)),
+                                      onTap: () {
+                                        Get.to(() => TvScreen(
+                                              channelIndex: index,
+                                            ));
+                                        controller.loadVideo(index);
+                                      },
                                       child: Column(
                                         children: [
                                           Container(
@@ -97,8 +102,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   BorderRadius.circular(12),
                                             ),
                                             child: Image.network(
-                                              controller.channelResponse!
-                                                      .channelData![index].logo ??
+                                              controller
+                                                      .channelResponse!
+                                                      .channelData![index]
+                                                      .logo ??
                                                   '',
                                             ),
                                           ),
